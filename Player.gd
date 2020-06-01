@@ -7,14 +7,16 @@ extends KinematicBody2D
 export (int) var Speed = 100
 var velocity = Vector2()
 
+export (String) var up_input
+export (String) var down_input
 
 func _ready():
 	pass # Replace with function body.
 
 func get_input():
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed(up_input):
 		velocity.y = -Speed
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed(down_input):
 		velocity.y = Speed
 	else:
 		velocity.y = 0

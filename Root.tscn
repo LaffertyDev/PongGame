@@ -1,54 +1,77 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Pong.gd" type="Script" id=2]
 [ext_resource path="res://Goal.gd" type="Script" id=3]
+[ext_resource path="res://Game.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.5781, 172.638 )
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.667742, 0.935484, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.77525, 0.77525, 0.77525, 1, 0.854839, 0.854839, 0.854839, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 18.6227, 21.519 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.367742, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.680645, 0.680645, 0.680645, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 34.521, 278.498 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 34.521, 380.679 )
-
-[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 522.468, 10 )
 
 [node name="Root" type="Node2D"]
 position = Vector2( 175.977, 109.264 )
+script = ExtResource( 4 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player1" type="KinematicBody2D" parent="."]
 position = Vector2( -72.4844, 189.57 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 Speed = 200
+up_input = "ui_up"
+down_input = "ui_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
 scale = Vector2( 1, 0.7 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="Sprite" type="Sprite" parent="Player1"]
 position = Vector2( -1.71661e-05, 0 )
 scale = Vector2( 0.02, 240 )
-texture = SubResource( 5 )
+texture = SubResource( 3 )
+
+[node name="Player2" type="KinematicBody2D" parent="."]
+position = Vector2( 727.218, 190.798 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+Speed = 200
+up_input = "up_two"
+down_input = "down_two"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+scale = Vector2( 1, 0.7 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Player2"]
+position = Vector2( -1.71661e-05, 0 )
+scale = Vector2( 0.02, 240 )
+texture = SubResource( 3 )
 
 [node name="Pong" type="KinematicBody2D" parent="."]
 modulate = Color( 0.803922, 0.172549, 0.172549, 1 )
@@ -58,52 +81,50 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pong"]
 position = Vector2( -3.42441, 8.93385 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Pong"]
 position = Vector2( -4.35352, 7.18402 )
 scale = Vector2( 0.0183752, 41.7287 )
-texture = SubResource( 7 )
+texture = SubResource( 6 )
 
-[node name="Bounderies" type="Node" parent="."]
-
-[node name="Left Goal" type="Area2D" parent="Bounderies"]
-position = Vector2( 34.5399, 302.521 )
+[node name="Left Goal" type="Area2D" parent="."]
+position = Vector2( -141.437, 193.257 )
 script = ExtResource( 3 )
 player = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounderies/Left Goal"]
-position = Vector2( -2.38205, -2.38205 )
-shape = SubResource( 8 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Goal"]
+position = Vector2( -2.38205, -3.60983 )
+shape = SubResource( 7 )
 
-[node name="Right Goal" type="Area2D" parent="Bounderies"]
-position = Vector2( 1019.99, 306.867 )
+[node name="Right Goal" type="Area2D" parent="."]
+position = Vector2( 844.013, 195.147 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 player = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounderies/Right Goal"]
-position = Vector2( -2.38205, -2.38205 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Goal"]
+position = Vector2( -2.38205, -5.38205 )
+shape = SubResource( 7 )
+
+[node name="Top Bar" type="StaticBody2D" parent="."]
+position = Vector2( 331.844, -102.915 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Bar"]
 shape = SubResource( 8 )
 
-[node name="Top Bar" type="StaticBody2D" parent="Bounderies"]
-position = Vector2( 507.821, 6.34919 )
+[node name="Bottom Bar" type="StaticBody2D" parent="."]
+position = Vector2( 339.792, 482.162 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounderies/Top Bar"]
-shape = SubResource( 9 )
-
-[node name="Bottom Bar" type="StaticBody2D" parent="Bounderies"]
-position = Vector2( 515.769, 591.426 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounderies/Bottom Bar"]
-shape = SubResource( 9 )
-[connection signal="body_entered" from="Bounderies/Left Goal" to="Pong" method="_on_Goal_body_entered"]
-[connection signal="body_entered" from="Bounderies/Right Goal" to="Pong" method="_on_Goal_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Bar"]
+shape = SubResource( 8 )
+[connection signal="body_entered" from="Left Goal" to="Pong" method="_on_Goal_body_entered"]
+[connection signal="body_entered" from="Right Goal" to="Pong" method="_on_Goal_body_entered"]
