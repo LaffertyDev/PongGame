@@ -6,7 +6,7 @@ extends Area2D
 # var b = "text"
 export (int) var player
 
-signal victory(player)
+signal defeat(player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +16,11 @@ func _ready():
 	
 
 func onGoalEnter(body):
+	if body.get_name() != "Pong":
+		return;
+		
 	print(body.get_name())
-	emit_signal("victory", player)
+	emit_signal("defeat", player)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

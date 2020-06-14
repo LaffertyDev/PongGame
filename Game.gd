@@ -10,11 +10,11 @@ func _ready():
 	var player1Goal = $"Left Goal"
 	var player2Goal = $"Right Goal"
 	
-	player1Goal.connect("victory", self, "on_victory")
-	player2Goal.connect("victory", self, "on_victory")
+	player1Goal.connect("defeat", self, "on_defeat")
+	player2Goal.connect("defeat", self, "on_defeat")
 	
 	#player1Goal.
 	pass # Replace with function body.
 
-func on_victory(player):
+func on_defeat(player):
 	print(player)
