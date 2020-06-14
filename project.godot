@@ -19,6 +19,15 @@ config/name="PongGame"
 run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/treat_warnings_as_errors=true
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 up_two={

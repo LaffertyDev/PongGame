@@ -19,4 +19,4 @@ func _physics_process(delta):
 	if collision:
 		var motion = collision.remainder.bounce(collision.normal)
 		velocity = velocity.bounce(collision.normal)
-		move_and_collide(motion)
+		var _collision = move_and_collide(motion)

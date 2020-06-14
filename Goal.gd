@@ -10,7 +10,10 @@ signal victory(player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("body_entered", self, "onGoalEnter")
+	var res = self.connect("body_entered", self, "onGoalEnter")
+	if res != OK:
+		print("unrecoverable error")
+	
 
 func onGoalEnter(body):
 	print(body.get_name())
