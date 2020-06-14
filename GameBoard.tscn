@@ -76,17 +76,21 @@ texture = SubResource( 3 )
 [node name="Pong" type="KinematicBody2D" parent="."]
 modulate = Color( 0.803922, 0.172549, 0.172549, 1 )
 self_modulate = Color( 0.701961, 0.231373, 0.231373, 1 )
-position = Vector2( 539.76, 194.577 )
+position = Vector2( 363.451, 170.088 )
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pong"]
-position = Vector2( -3.42441, 8.93385 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Pong"]
-position = Vector2( -4.35352, 7.18402 )
 scale = Vector2( 0.0183752, 41.7287 )
 texture = SubResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Left Goal" type="Area2D" parent="."]
 position = Vector2( -216.437, 193.257 )
