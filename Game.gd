@@ -18,3 +18,6 @@ func _ready():
 
 func on_defeat(player):
 	print(player)
+	var res = get_tree().change_scene("res://MainMenu.tscn")
+	if res != OK:
+		print("heavy failure")
